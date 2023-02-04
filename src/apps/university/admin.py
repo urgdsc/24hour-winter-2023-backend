@@ -11,4 +11,5 @@ class UniversityAdmin(admin.ModelAdmin):
 
 @admin.register(Program)
 class ProgramAdmin(admin.ModelAdmin):
+    readonly_fields = ["id"]
     pass
