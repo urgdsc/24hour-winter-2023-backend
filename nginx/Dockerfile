@@ -1,4 +1,5 @@
 FROM nginx:1.19-alpine
 
 COPY . /etc/nginx/
-COPY cert/ /etc/nginx/cert/
+COPY nginx.crt /etc/ssl/certs/nginx.crt
+COPY nginx.key /etc/ssl/private/nginx.key
