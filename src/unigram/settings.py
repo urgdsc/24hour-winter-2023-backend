@@ -22,7 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = getenv("SECRET_KEY", "django-insecure")
 
 # SECURITY WARNING: don"t run with debug turned on in production!
-DEBUG = getenv("DEBUG", True)
+BOOL_MAP = {
+    "True": True,
+    "False": False,
+}
+
+DEBUG = BOOL_MAP[getenv("DEBUG", "False")]
 
 ALLOWED_HOSTS = ["*"]
 
@@ -196,6 +201,6 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = getenv("CORS_ALLOWED_ORIGINS", "http://api.24hour.yazdanra.com,http://35.226.213.227").split(",")
-CORS_ALLOW_ALL_ORIGINS = DEBUG
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS
