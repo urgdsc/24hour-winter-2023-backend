@@ -27,5 +27,4 @@ class ProgramListView(ListAPIView):
         "duration",
         "university__name",
         "university__location",
-        "international_annual_tuition__lte",
     ]
