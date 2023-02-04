@@ -36,7 +36,9 @@ services:
 
 
   webserver:
-    build: nginx/Dockerfile
+    build:
+      context: nginx
+      dockerfile: Dockerfile
     ports:
       - "80:80"
 
