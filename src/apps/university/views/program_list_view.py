@@ -17,10 +17,15 @@ class ProgramListView(ListAPIView):
     filterset_fields = [
         "name",
         "description",
+        "duration",
         "university__name",
+        "university__location",
     ]
     search_fields = [
         "name",
         "description",
+        "duration",
         "university__name",
+        "university__location",
+        "international_annual_tuition__lte",
     ]
