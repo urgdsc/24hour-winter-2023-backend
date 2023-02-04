@@ -13,9 +13,26 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.contrib.admin import site
+from django.urls import path, include
+from django.utils.translation import gettext_lazy
+
+site.site_title = gettext_lazy("Unigram")
+site.site_header = gettext_lazy("Unigram")
+site.index_title = gettext_lazy("Unigram")
+
+admin.autodiscover()
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("auth/", include("apps.account.authentication.urls")),
+    path("user/", include("apps.account.user.urls")),
+    path("", include("apps.university.urls")),
+    path("", include("django_prometheus.urls")),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
