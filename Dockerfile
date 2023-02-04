@@ -29,14 +29,6 @@ RUN pip install gunicorn --upgrade --disable-pip-version-check --no-cache-dir
 RUN pip install ipython --upgrade --disable-pip-version-check --no-cache-dir
 
 
-# Configure Webserver
-#RUN addgroup --system nginx \
-#    && adduser --system --disabled-login --ingroup nginx --no-create-home --home /nonexistent --gecos "nginx user" --shell /bin/false --uid 101 nginx \
-#    && ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
-#
-#COPY deployment/nginx/nginx.conf /etc/nginx/nginx.conf
-
-
 # Mount sourse code
 COPY . .
 
@@ -51,9 +43,6 @@ RUN echo "Configuring timezone:" $TZ \
 # Set Environment configs
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-
-# In production stage `DEBUG` is always False!
-#ARG DEBUG=false
 
 # Make entrypoint executable and run the entrypoint to start jobs, gunicorns, liveness
 #RUN chmod +x /usr/app/docker-entrypoint.sh
