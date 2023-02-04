@@ -17,6 +17,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.admin import site
+from django.http import HttpResponse
 from django.urls import path, include
 from django.utils.translation import gettext_lazy
 
@@ -26,7 +27,13 @@ site.index_title = gettext_lazy("Unigram")
 
 admin.autodiscover()
 
+
+def healthcheck(request):
+    return HttpResponse(status=200)
+
+
 urlpatterns = [
+    path("healthcheck", healthcheck, name="healthcheck"),
     path("admin/", admin.site.urls),
     path("auth/", include("apps.account.authentication.urls")),
     path("user/", include("apps.account.user.urls")),
