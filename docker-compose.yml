@@ -10,9 +10,6 @@ services:
       - webserver
     ports:
       - "80:80"
-    secrets:
-      - nginx.crt
-      - nginx.key
 
   db:
     image: postgres:14-alpine
@@ -40,12 +37,6 @@ services:
       - webserver
       - db
 
-
-secrets:
-  nginx.crt:
-    external: true
-  nginx.key:
-    external: true
 
 volumes:
   dbdata:
