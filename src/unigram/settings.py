@@ -27,7 +27,7 @@ DEBUG = getenv("DEBUG", True)
 
 ALLOWED_HOSTS = ["*"]
 
-# AUTH_USER_MODEL = "user.User"
+AUTH_USER_MODEL = "user.User"
 
 # Application definition
 
@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 1st Party
+    "apps.account.user",
+    "apps.account.authentication",
 
     # 3rd party apps
     "corsheaders",
