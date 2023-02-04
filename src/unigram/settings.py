@@ -207,7 +207,9 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     "https://api.24hour.yazdanra.com",
+    "http://api.24hour.yazdanra.com",
     "https://24hour.yazdanra.com",
+    "http://24hour.yazdanra.com",
     "http://localhost",
     "http://127.0.0.1"
 ]
