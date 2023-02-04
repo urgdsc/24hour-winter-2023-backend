@@ -31,6 +31,13 @@ class University(models.Model):
 
 
 class Program(models.Model):
+    class Level(models.TextChoices):
+        CERTIFICATE = "CERTIFICATE", _("Certificate")
+        DIPLOMA = "DIPLOMA", _("Diploma")
+        BACHELOR = "BACHELOR", _("Bachelor")
+        MASTER = "MASTER", _("Master")
+        PHD = "PHD", _("PhD")
+
     id = models.UUIDField(primary_key=True, auto_created=True, editable=False, default=uuid4)
 
     university = models.ForeignKey(
@@ -40,8 +47,20 @@ class Program(models.Model):
         related_name="programs"
     )
 
+    level = models.CharField(
+        verbose_name=_("Level"), max_length=16, choices=Level.choices, null=False, blank=False, default=Level.BACHELOR
+    )
+
     name = models.CharField(max_length=256, null=False, blank=False)
     description = models.TextField(max_length=1024, null=True, blank=True)
+
+    duration = models.PositiveIntegerField(
+        verbose_name=_("Duration"),
+        help_text=_("Duration in years, based on 2 semesters a year with 5 courses each."),
+        null=False,
+        blank=False,
+        default=4
+    )
 
     domestic_annual_tuition = models.PositiveIntegerField(
         verbose_name=_("Domestic Annual Tuition"),
