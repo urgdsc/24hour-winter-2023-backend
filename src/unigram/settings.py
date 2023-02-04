@@ -29,7 +29,12 @@ BOOL_MAP = {
 
 DEBUG = BOOL_MAP[getenv("DEBUG", "False")]
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "api.24hour.yazdanra.com",
+    "24hour.yazdanra.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 AUTH_USER_MODEL = "user.User"
 
@@ -200,5 +205,9 @@ REST_FRAMEWORK = {
 # CORS_ALLOWED_ORIGINS = getenv("CORS_ALLOWED_ORIGINS", "https://api.24hour.yazdanra.com").split(",")
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
-CSRF_TRUST_ORIGIN = True
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://api.24hour.yazdanra.com",
+    "https://24hour.yazdanra.com",
+    "http://localhost",
+    "http://127.0.0.1"
+]
