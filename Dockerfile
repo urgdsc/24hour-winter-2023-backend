@@ -46,7 +46,7 @@ ENV PYTHONUNBUFFERED 1
 
 # Make entrypoint executable and run the entrypoint to start jobs, gunicorns, liveness
 #RUN chmod +x /usr/app/docker-entrypoint.sh
-#CMD /usr/app/docker-entrypoint.sh
+ENTRYPOINT ["bash", "docker-entrypoint.sh"]
 
 # Expose the port that Django use it
 EXPOSE 8000

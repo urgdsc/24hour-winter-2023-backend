@@ -2,6 +2,18 @@ version: "3.8"
 
 
 services:
+  webserver:
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    networks:
+      - webserver
+    ports:
+      - "80:80"
+    secrets:
+      - nginx.crt
+      - nginx.key
+
   db:
     image: postgres:14-alpine
     volumes:
@@ -10,6 +22,8 @@ services:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASS}
+    networks:
+      - db
 
   app:
     build: .
@@ -22,29 +36,10 @@ services:
       - db
     ports:
       - "8000:8000"
-    command: >
-      gunicorn src.unigram.wsgi:application
-        --name app-gunicorn
-        --bind 0.0.0.0:8000
-        --workers 4
-        --pythonpath /usr/app/src
-        --log-level=debug
-        --timeout 120
-        --reload
+    networks:
+      - webserver
+      - db
 
-
-
-
-
-  webserver:
-    build:
-      context: nginx
-      dockerfile: Dockerfile
-    ports:
-      - "80:80"
-    secrets:
-      - nginx.crt
-      - nginx.key
 
 secrets:
   nginx.crt:
@@ -54,3 +49,7 @@ secrets:
 
 volumes:
   dbdata:
+
+networks:
+  webserver:
+  db:
