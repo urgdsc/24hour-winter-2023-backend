@@ -197,7 +197,8 @@ REST_FRAMEWORK = {
 
 }
 
-CORS_ALLOWED_ORIGINS = getenv("CORS_ALLOWED_ORIGINS", "https://api.24hour.yazdanra.com").split(",")
+# CORS_ALLOWED_ORIGINS = getenv("CORS_ALLOWED_ORIGINS", "https://api.24hour.yazdanra.com").split(",")
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
-CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS
+CSRF_TRUST_ORIGIN = True
+
