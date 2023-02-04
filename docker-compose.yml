@@ -35,12 +35,22 @@ services:
 
 
 
+
   webserver:
     build:
       context: nginx
       dockerfile: Dockerfile
     ports:
       - "80:80"
+    secrets:
+      - nginx.crt
+      - nginx.key
+
+secrets:
+  nginx.crt:
+    external: true
+  nginx.key:
+    external: true
 
 volumes:
   dbdata:
