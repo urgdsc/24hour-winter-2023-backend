@@ -190,9 +190,6 @@ REST_FRAMEWORK = {
         "rest_framework.throttling.AnonRateThrottle",
         "rest_framework.throttling.UserRateThrottle"
     ],
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
-    ],
     "DEFAULT_THROTTLE_RATES": {
         "anon": "500000/day",
         "user": "100000/day"
