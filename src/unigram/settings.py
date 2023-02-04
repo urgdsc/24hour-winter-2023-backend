@@ -104,7 +104,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django_prometheus.db.backends.postgresql",
         "HOST": getenv("DB_HOST", "db"),
-        "PORT": getenv("GCP_CLOUDSQL_DATABASE_PORT", "5432"),
+        "PORT": getenv("DB_PORT", "5432"),
         "NAME": getenv("DB_NAME", "urelection"),
         "USER": getenv("DB_USER", "postgres"),
         "PASSWORD": getenv("DB_PASS", "postgres"),
@@ -197,7 +197,7 @@ REST_FRAMEWORK = {
 
 }
 
-CORS_ALLOWED_ORIGINS = getenv("CORS_ALLOWED_ORIGINS", "http://api.24hour.yazdanra.com,http://35.226.213.227").split(",")
+CORS_ALLOWED_ORIGINS = getenv("CORS_ALLOWED_ORIGINS", "https://api.24hour.yazdanra.com").split(",")
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS

@@ -10,8 +10,6 @@ services:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASS}
-    ports:
-      - "5432:5432"
 
   app:
     build: .
@@ -31,9 +29,16 @@ services:
         --workers 4
         --pythonpath /usr/app/src
         --log-level=debug
-        --reload
         --timeout 120
+        --reload
 
+
+
+
+  webserver:
+    build: nginx/Dockerfile
+    ports:
+      - "80:80"
 
 volumes:
   dbdata:
