@@ -63,11 +63,12 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django_prometheus.middleware.PrometheusBeforeMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "corsheaders.middleware.CorsPostCsrfMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -202,14 +203,10 @@ REST_FRAMEWORK = {
 
 }
 
-# CORS_ALLOWED_ORIGINS = getenv("CORS_ALLOWED_ORIGINS", "https://api.24hour.yazdanra.com").split(",")
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
-    "https://api.24hour.yazdanra.com",
-    "http://api.24hour.yazdanra.com",
-    "https://24hour.yazdanra.com",
-    "http://24hour.yazdanra.com",
+    "https://*.yazdanra.com",
+    "http://*.yazdanra.com",
     "http://localhost",
     "http://127.0.0.1"
 ]
